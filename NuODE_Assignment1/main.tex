@@ -1,0 +1,334 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{array}
+% These import packages to add further functionality
+\usepackage{amsmath}   % For mathematics
+\usepackage{amssymb}   % For mathematics
+\usepackage{graphicx}  % For images
+\usepackage{listings}  % For code
+\usepackage{multirow}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{nomencl}
+\makenomenclature
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\usepackage[toc,page]{appendix}
+% defining the bitcoin symbol
+\def\bitcoinA{%
+  \leavevmode
+  \vtop{\offinterlineskip %\bfseries
+    \setbox0=\hbox{B}%
+    \setbox2=\hbox to\wd0{\hfil\hskip-.03em
+    \vrule height .3ex width .15ex\hskip .08em
+    \vrule height .3ex width .15ex\hfil}
+    \vbox{\copy2\box0}\box2}}
+\date{\vspace{-5ex}}
+
+% Don't change the settings above. For example, the line numbers make for easy counting of the length of a piece of work.
+% Don't change margins, fonts (including size) or make any other alterations which would either expand or contract the length of the resulting file. 
+% You can add packages if you need but these should not impact on the length of the document, the markers have discretion to determine if such additions are appropriate. You should not need to add any packages for the first assignment.
+
+ 
+
+\title{NuODEs Assignment 1}
+\author{Anabel Yong, s1911568}
+
+\begin{document}
+\maketitle
+
+% What follows is poor. Make it good - see the Assignment 1 marking guide on Learn.
+
+
+\section{Problem 1}
+
+With Euler's Method, $y_{n+1}=y_n + hf(t_n,y_n)$, with $n=0$, $n=1$ and $h=0.2$:
+\begin{equation*}
+    y_0 = 1 
+\end{equation*}
+\begin{equation*}
+    y_1 = 1 + 0.2 \times (0^2-1^2)= 0.8
+\end{equation*}
+\begin{equation*}
+    y_2 = 0.8 + 0.2 \times (0.2^2-0.8^2) = 0.68
+\end{equation*}
+
+This indicates $y(0.4) \approx 0.68$. 
+Using Euler's Method with $h=0.1$, $n=0$, $n=1$, $n=2$ and $n=3$:
+\begin{equation*}
+    y_0 = 1 
+\end{equation*}
+\begin{equation*}
+    y_1 = y_0+ h \times (t^2-(y_0)^2)
+\end{equation*}
+\begin{equation*}
+    y_1 = 1 + 0.1 \times (0^2-1^2)= 0.9
+\end{equation*}
+\begin{equation*}
+    y_2 = y_1+ h \times (t^2-(y_1)^2)
+\end{equation*}
+\begin{equation*}
+    y_2 = 0.9 + 0.1 \times (0.1^2-0.9^2) = 0.820
+\end{equation*}
+\begin{equation*}
+    y_3 = y_2+ h \times (t^2-(y_2)^2)
+\end{equation*}
+\begin{equation*}
+    y_3 = 0.820 + 0.1 \times (0.2^2-0.820^2) \approx 0.75676
+\end{equation*}
+\begin{equation*}
+    y_4 = y_3+ h \times (t^2-(y_3)^2)
+\end{equation*}
+\begin{equation*}
+    y_4 = 0.75676 + 0.1 \times (0.3^2-0.75676^2) \approx 0.70849 (SHOWN)
+\end{equation*}
+
+\section{Problem 2}
+\subsection*{a)}
+Differential equation: $y'=ty^2$, with initial condition $y(0)=y_0 >0$;
+
+\begin{equation*}
+   \frac{dy}{dt}=ty^2
+\end{equation*}
+Using separation of variables, 
+\begin{equation*}
+    \frac{1}{y^2}dy= tdt
+\end{equation*}
+
+Integrating both sides:
+\begin{equation*}
+    \int\frac{1}{y^2}dy=\int tdt
+\end{equation*}
+
+\begin{equation*}
+    -\frac{1}{y}=\frac{1}{2}t^2 + C
+\end{equation*}
+
+Using the initial conditions $y(0)=y_0>0$,
+\begin{equation*}
+    -\frac{1}{y_0}=\frac{1}{2}(0)^2+C
+\end{equation*}
+\begin{equation*}
+    C= -\frac{1}{y_0}
+\end{equation*}
+\begin{equation*}
+    -\frac{1}{y(t)}=\frac{1}{2}t^2-\frac{1}{y_0}
+\end{equation*}
+\begin{equation*}
+    \frac{1}{y(t)}=\frac{1}{y_0}-\frac{1}{2}t^2
+\end{equation*}
+\begin{equation*}
+    \frac{1}{y(t)}=\frac{2-y_0t^2}{2y_0}
+\end{equation*}
+\begin{equation*}
+    y(t)=\frac{1}{\frac{1}{y_0}-\left(\frac{t^2}{2}\right)} (SHOWN)
+\end{equation*}
+
+When the denominator $\frac{1}{y_0}-\frac{t^2}{2}=0$,
+\begin{equation*}
+    \frac{2-y_0t^2}{2y_0}=0
+\end{equation*}
+\begin{equation*}
+    2-y_0t^2=0
+\end{equation*}
+\begin{equation*}
+    y_0t^2=2
+\end{equation*}
+\begin{equation*}
+    t^2=\frac{2}{y_0}
+\end{equation*}
+\begin{equation*}
+    t=\pm{\sqrt{\frac{2}{y_0}}}
+\end{equation*}
+
+Given domain is bigger than 0, we do not consider negative t. When the denominator is 0, all positive $t$ near $t={\sqrt{\frac{2}{y_0}}}$ will tend to positive infinity, and therefore this is discontinuous. Hence the solution cannot be smoothly continued from initial point for all positive t. 
+
+\subsection*{b)} For region $0<t<\sqrt{\frac{2}{y_0}}$ for which the solution is defined, this provides the function which is a continuous function of its arguments in a region of the plane containing the rectangle:
+\begin{equation*}
+    D={(t,y)|t_0\leq t\leq T, |y-y_0| <K}
+\end{equation*}
+With $y'=ty^2$:
+\begin{equation*}
+    |f(t,u)-f(t,v)|= |tu^2-tv^2|
+\end{equation*}
+Factorising $|tu^2-tv^2|$, 
+\begin{equation*}
+    |f(t,u)-(t,v)|=|t(u+v)(u-v)|
+\end{equation*}
+As $|f(t,u)-f(t,v)|<L|u-v|$, 
+\begin{equation*}
+    |t(u+v)(u-v)|\leq L|u-v|
+\end{equation*}
+$|t(u+v)|$ is bounded because they are contained in region D. Therefore, $|t(u+v)|\leq L$ for some $L\in\mathbb{R}$ which indicates it does have a Lipschitz constant. The locality conditions (from local existence/ uniqueness of solutions for ODE systems theorem) are fulfilled due to the Extreme Value Theorem.
+
+This is true due to Extreme Value Theorem where function is continuous over the closed interval [$t_0,T$] where there is a maxima and minima. 
+
+With the conditions above satisfied, this does not contradict the observation in part a as the region defined does not have the point of discontinuity, where solution is not defined. 
+
+\subsection*{c)}
+Yes, it does exist. In Euler's method $y_{n+1}=y_n + hf(t_n,y_n)$,
+\begin{equation*}
+    y_{n+1}=y_n+h \times (ty^2)
+\end{equation*}
+As $y_0$ is defined from the initial conditions and $t_n$ is defined from $t_n=nh$, the sequence will exist for all n \geq 0.
+
+\section{Problem 3}
+\subsection*{a)}
+Initial Value Problem (IVP):
+\begin{equation*}
+    y'=\frac{t}{1+\alpha y}
+\end{equation*}
+
+\begin{equation*}
+    \frac{dy}{dt}=f(t,y)
+\end{equation*}
+
+\begin{equation*}
+    L \geq \max_{(t,y)\in\Omega} \left|\frac{\partial f}{\partial y}\right|
+\end{equation*}
+
+\begin{equation*}
+    f=\frac{t}{1+\alpha y}
+\end{equation*}
+
+\begin{equation*}
+    \frac{\partial f}{\partial y}=-\frac{\alpha t}{(1+\alpha y)^2}
+\end{equation*}
+
+\begin{equation*}
+    L \geq \max \left|-\frac{\alpha t}{(1+\alpha y)^2}\right|
+\end{equation*}
+
+Any value of L greater than $\frac{\alpha}{(1+y)^2}$ would be a suitable choice. As $\alpha>\frac{\alpha}{(1+y)^2}$, $L=\alpha$ is a suitable choice.
+
+\subsection*{b)}
+\begin{equation*}
+    y'=f(t,y)
+\end{equation*}
+
+\begin{equation*}
+    y''=f_t(t,y)+f_y(t,y)y'(t)
+\end{equation*}
+\begin{equation*}
+    y''=f_t(t,y)+f_y(t,y)f(t,y)
+\end{equation*}
+because y'' is continous, there exists a value M such that:
+\begin{equation*}
+    | y''(t)| \leq M \text{ where } a\leq t \leq b
+\end{equation*}
+\begin{equation*}
+    f_t(t,y)=\frac{1}{1+\alpha y}
+\end{equation*}
+\begin{equation*}
+    f_y(t,y)=-\frac{\alpha t}{(1+\alpha y)^2}
+\end{equation*}
+\begin{equation*}
+    f(t,y)=\frac{t}{1+\alpha y}
+\end{equation*}
+
+Therefore,
+\begin{equation*}
+    y''=\frac{1}{1+\alpha y}-\frac{\alpha t}{(1+\alpha y)^2}\times \frac{t}{1+\alpha y}
+\end{equation*}
+\begin{equation*}
+    y''=\frac{1}{1+\alpha y}-\frac{\alpha t^2}{(1+\alpha y)^3}
+\end{equation*}
+
+Using the triangle inequality, 
+\begin{equation*}
+    |y''| \leq \left| \frac{1}{1+\alpha y}\right| + \left| \frac{\alpha t^2}{(1+\alpha y)^3}\right|
+\end{equation*}
+As maximum value of $\frac{1}{\alpha+y}$ is 1 and $\frac{\alpha t^2}{(1+\alpha y)^3}$ is $\alpha$, which forms $1+\alpha$, this is a suitable value of M. 
+
+\subsection*{c)}
+\begin{equation*}
+    D=\frac{e^\alpha (1+\alpha)}{2\alpha}
+\end{equation*}
+Using $a=0, b=1, L=\alpha, M=1+\alpha$ as values of a and b are within this domain $t\in[0,1]$ and values L and M extracted from part (a) and (b) into:
+\begin{equation*}
+    D=e^{(b-a)L}\frac{M}{2L}
+\end{equation*}
+\begin{equation*}
+    D=e^{(1-0)\alpha}\frac{1+\alpha}{2\alpha}
+\end{equation*}
+\begin{equation*}
+    D=\frac{e^\alpha (1+\alpha)}{2\alpha} (SHOWN)
+\end{equation*}
+
+To show that $D=e^{\alpha}$ also holds, it has to be larger than D value above, $D=\frac{e^\alpha (1+\alpha)}{2\alpha} \leq e^\alpha$ for $\alpha>1$.
+\begin{equation*}
+    D=\frac{e^\alpha (1+\alpha)}{2\alpha} 
+\end{equation*}
+\begin{equation*}
+    D=e^{\alpha}\left(\frac{1}{2\alpha}+\frac{1}{2}\right)
+\end{equation*}
+\begin{equation*}
+    D=\frac{1}{2}e^{\alpha}\left(\frac{1}{\alpha}+1\right)
+\end{equation*}
+
+\section{Problem 4}
+\subsection*{a)} 
+ODE $y'=-|y|$ in an interval $[0,T]$ with initial condition $y(0)\in \mathbb{R}$. Since t is bounded, y has a minimum and maximum value based on Extreme Value Theorem and using Picard's Theorem, 
+\begin{equation*}
+    D=\{(t,y) |t_0\leq t \leq T, |y-y_0| <K\}
+\end{equation*}
+\begin{equation*}
+    |f(t,u)-f(t,v)| \leq L|u-v|
+\end{equation*}
+Substituting $y'=-|y|$, 
+\begin{equation*}
+    |-|u|+|v||=||v|-|u||
+\end{equation*}
+Using Reverse Triangle Inequality,
+\begin{equation*}
+       |||u||-||v|||\leq||u-v||
+\end{equation*}
+By comparison, value of L is 1, which indicates ODE has a unique solution as there exists a Lipschitz constant. 
+
+\subsection*{b)}
+There are 3 cases to consider: $y_0$ is positive, $y_0=0$  and $y_0$ is negative. When $y_0$ is positive, it will never reach the x-axis $(y=0)$, value of $y'$ would decrease until the critical point of the gradient which is when $y'=0$. Therefore it will never change sign. When $y_0=0$, solution of the ODE just maintains on the x-axis which indicates it does not change sign as well. When $y_0$ is negative, $y'$, gradient would still be negative showing a slope, or equation decreasing in value, which indicates it will never change sign. 
+
+\subsection*{c)}
+With the error inequality in lecture notes 2.7,
+\begin{equation*}
+    |e_n|=e^{(b-a)L}\frac{M}{2L}
+\end{equation*}
+\begin{equation*}
+    |e_n|=\frac{e^TM}{2}
+\end{equation*}
+\begin{equation*}
+    y'=-|y|
+\end{equation*}
+\begin{equation*}
+    y''=-\frac{d}{dt}|y|
+\end{equation*}
+\begin{equation*}
+    y''=-\frac{y}{|y|} \times y'
+\end{equation*}
+\begin{equation*}
+    y''=-y
+\end{equation*}
+Since $|y''|=y$ is bounded by constant $M (\leq M)$, and as $e^T$ is also a constant, the error inequality can be rewritten as:
+\begin{equation*}
+    |e_n|\leq Dh \text{ (where } D \in \mathbb{R})
+\end{equation*}
+As h goes to 0, $|e_n|$ converges to 0. Therefore, Euler's method converges for this ODE.
+
+\subsection*{d)}
+False, for any stepsize $h>1$, numerical solution formed by Euler's method changes sign. For any value of $h>1$ and a positive value of $y_0$. $y_1$ would give a negative solution and therefore the solution changes sign based on Euler's method shown below:
+\begin{equation*}
+    y_{n+1}=y_n-h|y_n|
+\end{equation*}
+With values $h>0$ such as 2 and suppose $y_n=5$, 
+\begin{equation*}
+    y_{n+1}=y_n-2|y_n|
+\end{equation*}
+This yields a value of -5 from +5, which indicates a change in sign. 
+
+\subsection{\Problem 5}
+
+
+\end{document}
+
