@@ -5,3 +5,5 @@ Numerical Ordinary Differential Equations and Applications 3 course at Universit
 3) derive and analyse such methods and their errors.
 4) understand the principles of consistency, stability and convergence.
 5) apply the above to examples from modern applied mathematics.
+
+**Coursework Assignments for Year 3 Undergraduate course. 
